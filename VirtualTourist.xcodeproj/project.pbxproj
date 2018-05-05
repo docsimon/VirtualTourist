@@ -15,7 +15,7 @@
 		CA6F72CB20975D2D00D08036 /* VirtualTouristTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6F72CA20975D2D00D08036 /* VirtualTouristTests.swift */; };
 		CA6F72D620975D2D00D08036 /* VirtualTouristUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6F72D520975D2D00D08036 /* VirtualTouristUITests.swift */; };
 		CACC99F1209DF0D600BFFA26 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F0209DF0D600BFFA26 /* DataController.swift */; };
-		CACC99F4209DF4C000BFFA26 /* PinPictures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F2209DF4C000BFFA26 /* PinPictures.xcdatamodeld */; };
+		CACC99F5209DF6E100BFFA26 /* PinPictures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F2209DF4C000BFFA26 /* PinPictures.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,7 +296,7 @@
 			files = (
 				CA6F72B820975D2B00D08036 /* MapViewController.swift in Sources */,
 				CACC99F1209DF0D600BFFA26 /* DataController.swift in Sources */,
-				CACC99F4209DF4C000BFFA26 /* PinPictures.xcdatamodeld in Sources */,
+				CACC99F5209DF6E100BFFA26 /* PinPictures.xcdatamodeld in Sources */,
 				CA6F72B620975D2B00D08036 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

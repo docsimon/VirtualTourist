@@ -3,7 +3,7 @@
     <entity name="Picture" representedClassName="Picture" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="payload" optional="YES" attributeType="Binary" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="payload" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="pin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PinCoordinates" inverseName="picture" inverseEntity="PinCoordinates" syncable="YES"/>
     </entity>
     <entity name="PinCoordinates" representedClassName="PinCoordinates" syncable="YES" codeGenerationType="class">
