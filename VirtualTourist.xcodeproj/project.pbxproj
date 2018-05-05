@@ -15,6 +15,7 @@
 		CA6F72CB20975D2D00D08036 /* VirtualTouristTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6F72CA20975D2D00D08036 /* VirtualTouristTests.swift */; };
 		CA6F72D620975D2D00D08036 /* VirtualTouristUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6F72D520975D2D00D08036 /* VirtualTouristUITests.swift */; };
 		CACC99F1209DF0D600BFFA26 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F0209DF0D600BFFA26 /* DataController.swift */; };
+		CACC99F4209DF4C000BFFA26 /* PinPictures.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F2209DF4C000BFFA26 /* PinPictures.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		CA6F72D520975D2D00D08036 /* VirtualTouristUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualTouristUITests.swift; sourceTree = "<group>"; };
 		CA6F72D720975D2D00D08036 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CACC99F0209DF0D600BFFA26 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		CACC99F3209DF4C000BFFA26 /* PinPictures.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PinPictures.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				CACC99F0209DF0D600BFFA26 /* DataController.swift */,
+				CACC99F2209DF4C000BFFA26 /* PinPictures.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 			files = (
 				CA6F72B820975D2B00D08036 /* MapViewController.swift in Sources */,
 				CACC99F1209DF0D600BFFA26 /* DataController.swift in Sources */,
+				CACC99F4209DF4C000BFFA26 /* PinPictures.xcdatamodeld in Sources */,
 				CA6F72B620975D2B00D08036 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,6 +624,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CACC99F2209DF4C000BFFA26 /* PinPictures.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CACC99F3209DF4C000BFFA26 /* PinPictures.xcdatamodel */,
+			);
+			currentVersion = CACC99F3209DF4C000BFFA26 /* PinPictures.xcdatamodel */;
+			path = PinPictures.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CA6F72AA20975D2B00D08036 /* Project object */;
 }
