@@ -32,7 +32,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Yc5-Gv-3IQ">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="ZgP-3K-DVO">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="trash" id="ZgP-3K-DVO">
                             <connections>
                                 <action selector="deletePin:" destination="BYZ-38-t0r" id="Lu0-t1-6gc"/>
                             </connections>

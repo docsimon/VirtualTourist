@@ -9,18 +9,13 @@
 import UIKit
 import MapKit
 
-enum MapStatus {
-    case normal
-    case edit
-}
-
 class MapViewController: UIViewController {
 
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var mapView: MKMapView!
-    var mapStatus: MapStatus = .normal
     var dataController: DataController!
     var mapViewModel: MapViewModel?
+    var selectedPin: MKAnnotationView?
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -36,7 +31,6 @@ class MapViewController: UIViewController {
     
     // func called when gesture recognizer detects a long press
     @objc func mapLongPress(_ recognizer: UIGestureRecognizer) {
-        resetStatus()
         let touchedAt = recognizer.location(in: self.mapView) // adds the location on the view it was pressed
         let touchedAtCoordinate : CLLocationCoordinate2D = mapView.convert(touchedAt, toCoordinateFrom: self.mapView) // will get coordinates
         let currentPin = MKPointAnnotation()
@@ -55,14 +49,11 @@ class MapViewController: UIViewController {
     
     // delete the slected pin
     @IBAction func deletePin(_ sender: Any) {
-        mapStatus = mapStatus == .normal ? .edit : .normal
-        editButton.title = mapStatus == .normal ? "Edit" : "Done"
+        if let pin = selectedPin {
+            mapViewModel?.deletePin(pin: pin)
+            editButton.isEnabled = false
+        }
     }
-    func resetStatus(){
-        mapStatus = .normal
-        editButton.title = "Edit"
-    }
-    
 }
 extension MapViewController: MapViewPinsDelegate {
     func updatePinsOnTheMap(pins: [MKPointAnnotation]) {
@@ -78,12 +69,11 @@ extension MapViewController: MapViewPinsDelegate {
 extension MapViewController: MKMapViewDelegate {
    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        switch mapStatus {
-        case .normal:
-            print()
-        case .edit:
-            // delete it form the DB
-            mapViewModel?.deletePin(pin: view)
-        }
+        editButton.isEnabled = true
+        selectedPin = view
+    }
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        editButton.isEnabled = false
+        selectedPin = nil
     }
 }
