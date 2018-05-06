@@ -23,6 +23,10 @@ class DataController {
         persistentContainer = NSPersistentContainer(name: dataModel)
     }
     
+    var context: NSManagedObjectContext {
+        return (persistentContainer?.viewContext)!
+    }
+    
     func loadDb(completion: @escaping (String) -> ()) {
         persistentContainer?.loadPersistentStores(completionHandler: {description, error in
             
@@ -40,6 +44,7 @@ class DataController {
         if context.hasChanges {
             do {
                 try context.save()
+                print("Context saved")
             }catch {
                 print("Can't save context")
             }

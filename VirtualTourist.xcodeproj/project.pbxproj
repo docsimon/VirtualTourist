@@ -15,7 +15,8 @@
 		CA6F72CB20975D2D00D08036 /* VirtualTouristTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6F72CA20975D2D00D08036 /* VirtualTouristTests.swift */; };
 		CA6F72D620975D2D00D08036 /* VirtualTouristUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6F72D520975D2D00D08036 /* VirtualTouristUITests.swift */; };
 		CACC99F1209DF0D600BFFA26 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F0209DF0D600BFFA26 /* DataController.swift */; };
-		CACC99F5209DF6E100BFFA26 /* Location.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F2209DF4C000BFFA26 /* Location.xcdatamodeld */; };
+		CACC99F7209F0AEB00BFFA26 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F6209F0AEB00BFFA26 /* MapViewModel.swift */; };
+		CACC99FB209F336400BFFA26 /* Locations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F8209F322600BFFA26 /* Locations.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +51,8 @@
 		CA6F72D520975D2D00D08036 /* VirtualTouristUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualTouristUITests.swift; sourceTree = "<group>"; };
 		CA6F72D720975D2D00D08036 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CACC99F0209DF0D600BFFA26 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		CACC99F3209DF4C000BFFA26 /* PinPictures.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PinPictures.xcdatamodel; sourceTree = "<group>"; };
+		CACC99F6209F0AEB00BFFA26 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		CACC99F9209F322600BFFA26 /* Locations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Locations.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		CA7FFD94209C92D9001D3759 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CACC99F6209F0AEB00BFFA26 /* MapViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -147,7 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				CACC99F0209DF0D600BFFA26 /* DataController.swift */,
-				CACC99F2209DF4C000BFFA26 /* Location.xcdatamodeld */,
+				CACC99F8209F322600BFFA26 /* Locations.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -295,8 +298,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA6F72B820975D2B00D08036 /* MapViewController.swift in Sources */,
+				CACC99F7209F0AEB00BFFA26 /* MapViewModel.swift in Sources */,
+				CACC99FB209F336400BFFA26 /* Locations.xcdatamodeld in Sources */,
 				CACC99F1209DF0D600BFFA26 /* DataController.swift in Sources */,
-				CACC99F5209DF6E100BFFA26 /* Location.xcdatamodeld in Sources */,
 				CA6F72B620975D2B00D08036 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -626,13 +630,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		CACC99F2209DF4C000BFFA26 /* Location.xcdatamodeld */ = {
+		CACC99F8209F322600BFFA26 /* Locations.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CACC99F3209DF4C000BFFA26 /* PinPictures.xcdatamodel */,
+				CACC99F9209F322600BFFA26 /* Locations.xcdatamodel */,
 			);
-			currentVersion = CACC99F3209DF4C000BFFA26 /* PinPictures.xcdatamodel */;
-			path = Location.xcdatamodeld;
+			currentVersion = CACC99F9209F322600BFFA26 /* Locations.xcdatamodel */;
+			path = Locations.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
