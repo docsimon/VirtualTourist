@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E202" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Picture" representedClassName="Picture" syncable="YES" codeGenerationType="class">
+    <entity name="Photo" representedClassName="Photo" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="payload" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <relationship name="pin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PinCoordinates" inverseName="picture" inverseEntity="PinCoordinates" syncable="YES"/>
+        <relationship name="pin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pin" inverseName="photo" inverseEntity="Pin" syncable="YES"/>
     </entity>
-    <entity name="PinCoordinates" representedClassName="PinCoordinates" syncable="YES" codeGenerationType="class">
+    <entity name="Pin" representedClassName="Pin" syncable="YES" codeGenerationType="class">
         <attribute name="coordinates" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="picture" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Picture" inverseName="pin" inverseEntity="Picture" syncable="YES"/>
+        <relationship name="photo" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Photo" inverseName="pin" inverseEntity="Photo" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PinCoordinates" positionX="-315" positionY="-42" width="128" height="103"/>
-        <element name="Picture" positionX="-54" positionY="9" width="128" height="103"/>
+        <element name="Pin" positionX="-315" positionY="-42" width="128" height="105"/>
+        <element name="Photo" positionX="-54" positionY="9" width="128" height="105"/>
     </elements>
 </model>

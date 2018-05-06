@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         dataController = DataController(dataModel: "PinPictures")
+        dataController.loadDb { error in
+            print(error)
+        }
         return true
     }
 }

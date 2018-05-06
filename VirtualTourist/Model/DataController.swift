@@ -23,11 +23,14 @@ class DataController {
         persistentContainer = NSPersistentContainer(name: dataModel)
     }
     
-    func loadDb() {
+    func loadDb(completion: @escaping (String) -> ()) {
         persistentContainer?.loadPersistentStores(completionHandler: {description, error in
             
             guard error == nil else {
-                fatalError((error?.localizedDescription) ?? "Cannot load DB")
+                let err = error?.localizedDescription ?? "Cannot load DB"
+                completion(err)
+                fatalError(err)
+                
             }
             
         } )
