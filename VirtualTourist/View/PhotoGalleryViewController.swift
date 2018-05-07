@@ -24,6 +24,7 @@ class PhotoGalleryViewController: UIViewController {
             viewModel = PhotoGalleryViewModel(dataController: dataController, coordinates: coordinates)
             viewModel?.delegate = self
             viewModel?.getPhotoUrls()
+            viewModel?.lookUpCurrentLocation()
         }
     }
 
@@ -38,7 +39,10 @@ extension PhotoGalleryViewController: PhotoGalleryDelegate {
     }
     
     func updateTitle(title: String) {
-        
+        DispatchQueue.main.async {
+            self.locationTitle.textAlignment = .center
+            self.locationTitle.text = title
+        }
     }
     
     
@@ -63,7 +67,6 @@ extension PhotoGalleryViewController: ErrorControllerProtocol {
 extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("ciccio: ", gallery?.count)
         return gallery?.count ?? 0
     }
     

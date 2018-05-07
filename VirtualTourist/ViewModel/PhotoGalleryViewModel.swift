@@ -39,7 +39,7 @@ class PhotoGalleryViewModel {
         queryItemsArray.append(URLQueryItem(name: "method", value: "flickr.photos.search"))
         queryItemsArray.append(URLQueryItem(name: "extras", value: "url_m"))
         queryItemsArray.append(URLQueryItem(name: "safe_search", value: "1"))
-        queryItemsArray.append(URLQueryItem(name: "per_page", value: "20"))
+        queryItemsArray.append(URLQueryItem(name: "per_page", value: "21"))
         queryItemsArray.append(URLQueryItem(name: "nojsoncallback", value: "?"))
         urlComponents?.queryItems = queryItemsArray
         
@@ -87,4 +87,22 @@ class PhotoGalleryViewModel {
         }
     }
     
+    func getLocationDescription(){
+        
+    }
+    func lookUpCurrentLocation(){
+        let location = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) in
+            if error == nil {
+                if let firstLocation = placemarks?[0] {
+                    self.delegate?.updateTitle(title: firstLocation.locality ?? "Unknown location")
+                }
+            }
+            else {
+                self.delegate?.updateTitle(title: "Unknown location")
+            }
+        })
+    }
 }
+
