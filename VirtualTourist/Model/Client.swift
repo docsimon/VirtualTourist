@@ -65,8 +65,8 @@ class Client {
                 let parsingResult: (Flickr?, ErrorData?) = DataParser.parseJson(data: data)
                 completion(parsingResult.0, parsingResult.1)
             case .dataHandler:
-                print("Do nothing for now")
-                return
+                // use it for photo
+                completion(data, nil)
             }
             
         }).resume()

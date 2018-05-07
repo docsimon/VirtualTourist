@@ -16,10 +16,6 @@ struct ErrorData{
 }
 
 
-struct FlickrJsonApi: Decodable {
-    let jsonFlickrApi: Flickr
-}
-
 struct Flickr: Decodable {
     let photos: Gallery
 }

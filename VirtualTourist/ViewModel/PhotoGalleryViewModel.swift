@@ -65,4 +65,26 @@ class PhotoGalleryViewModel {
         })
     }
     
+    func fetchImage(url: String, completion: @escaping (Data?) -> () ){
+        let client = Client()
+        guard let url = URL(string: url) else {
+            print("Invalid url")
+            return
+        }
+        client.fetchRemoteData(request: url, dataHandler: .dataHandler) { data, error in
+            
+            guard error == nil else {
+                print("Error")
+                return
+            }
+            
+            guard let data = data as? Data else {
+                print("Error")
+                return
+            }
+            
+            completion(data)
+        }
+    }
+    
 }

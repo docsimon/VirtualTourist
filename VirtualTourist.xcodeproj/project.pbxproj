@@ -24,6 +24,7 @@
 		CAFB8A1B20A08BC0006C4C13 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A1A20A08BC0006C4C13 /* Constants.swift */; };
 		CAFB8A1D20A08C12006C4C13 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A1C20A08C12006C4C13 /* DataModel.swift */; };
 		CAFB8A1F20A08CCD006C4C13 /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A1E20A08CCD006C4C13 /* DataParser.swift */; };
+		CAFB8A2120A0C3F9006C4C13 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A2020A0C3F9006C4C13 /* ImageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		CAFB8A1A20A08BC0006C4C13 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CAFB8A1C20A08C12006C4C13 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		CAFB8A1E20A08CCD006C4C13 /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
+		CAFB8A2020A0C3F9006C4C13 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 				CA6F72B720975D2B00D08036 /* MapViewController.swift */,
 				CAFB8A1220A07780006C4C13 /* PhotoGalleryViewController.swift */,
 				CAFB8A1820A08A0E006C4C13 /* ErrorManager.swift */,
+				CAFB8A2020A0C3F9006C4C13 /* ImageCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			files = (
 				CAFB8A1920A08A0E006C4C13 /* ErrorManager.swift in Sources */,
 				CA6F72B820975D2B00D08036 /* MapViewController.swift in Sources */,
+				CAFB8A2120A0C3F9006C4C13 /* ImageCollectionViewCell.swift in Sources */,
 				CAFB8A1F20A08CCD006C4C13 /* DataParser.swift in Sources */,
 				CAFB8A1D20A08C12006C4C13 /* DataModel.swift in Sources */,
 				CAFB8A1520A08506006C4C13 /* PhotoGalleryViewModel.swift in Sources */,
