@@ -49,6 +49,8 @@ class MapViewModel {
                     let annotation = MKPointAnnotation()
                     annotation.coordinate.latitude = CLLocationDegrees(pin.latitude)
                     annotation.coordinate.longitude = CLLocationDegrees(pin.longitude)
+                    annotation.title = "Photo Gallery"
+                    annotation.subtitle = "tap to view"
                     return annotation
                 }
                 delegate?.updatePinsOnTheMap(pins: coordinates)

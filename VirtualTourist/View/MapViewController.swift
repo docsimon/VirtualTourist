@@ -30,13 +30,21 @@ class MapViewController: UIViewController {
     }
     
     // func called when gesture recognizer detects a long press
+    fileprivate func addPin(_ currentPin: MKPointAnnotation) {
+        currentPin.title = "Photo Gallery"
+        currentPin.subtitle = "tap to view"
+        DispatchQueue.main.async {
+            self.mapView.addAnnotation(currentPin)
+        }
+    }
+    
     @objc func mapLongPress(_ recognizer: UIGestureRecognizer) {
         let touchedAt = recognizer.location(in: self.mapView) // adds the location on the view it was pressed
         let touchedAtCoordinate : CLLocationCoordinate2D = mapView.convert(touchedAt, toCoordinateFrom: self.mapView) // will get coordinates
         let currentPin = MKPointAnnotation()
         currentPin.coordinate = touchedAtCoordinate
         if recognizer.state == .ended {
-            mapView.addAnnotation(currentPin)
+            addPin(currentPin)
             updateDB(pin: currentPin)
         }
     }
@@ -75,5 +83,29 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         editButton.isEnabled = false
         selectedPin = nil
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+
+        let reuseId = "pin"
+
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
+
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = .red
+            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+
+        return pinView
+    }
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView {
+           print("called !!!!!")
+        }
     }
 }
