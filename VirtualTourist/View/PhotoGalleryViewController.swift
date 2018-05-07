@@ -16,6 +16,7 @@ class PhotoGalleryViewController: UIViewController {
     var pin: CLLocationCoordinate2D?
     var dataController: DataController!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     var viewModel: PhotoGalleryViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,18 @@ class PhotoGalleryViewController: UIViewController {
             viewModel?.getPhotoUrls()
             viewModel?.lookUpCurrentLocation()
         }
+        setFlowLayout()
     }
-
+    private func setFlowLayout(){
+        let space:CGFloat = 5
+        let width = (view.frame.size.width - 25)/3
+        let height = width
+        
+        collectionViewFlowLayout.minimumInteritemSpacing = space
+        collectionViewFlowLayout.minimumLineSpacing = space
+        collectionViewFlowLayout.itemSize = CGSize(width: width, height: height)
+        collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
 }
 
 extension PhotoGalleryViewController: PhotoGalleryDelegate {
@@ -46,8 +57,6 @@ extension PhotoGalleryViewController: PhotoGalleryDelegate {
             self.locationTitle.text = title
         }
     }
-    
-    
 }
 
 // MARK: Error Delegate

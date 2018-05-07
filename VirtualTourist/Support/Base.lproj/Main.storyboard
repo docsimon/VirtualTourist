@@ -121,6 +121,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="kOm-kW-2hk" id="DAF-tD-fEQ"/>
+                        <outlet property="collectionViewFlowLayout" destination="fis-f1-UR4" id="95Y-ni-ZGc"/>
                         <outlet property="locationTitle" destination="euB-G6-TBc" id="jrf-sf-mpE"/>
                     </connections>
                 </viewController>

@@ -104,5 +104,6 @@ class PhotoGalleryViewModel {
             }
         })
     }
+    
 }
 
