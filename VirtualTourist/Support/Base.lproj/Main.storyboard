@@ -57,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kOm-kW-2hk">
-                                <rect key="frame" x="0.0" y="186" width="375" height="481"/>
+                                <rect key="frame" x="0.0" y="121" width="375" height="546"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fis-f1-UR4">
                                     <size key="itemSize" width="112" height="110"/>
@@ -109,13 +109,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="kOm-kW-2hk" firstAttribute="trailing" secondItem="zra-qE-ey5" secondAttribute="trailing" id="1IB-WU-wqV"/>
-                            <constraint firstItem="euB-G6-TBc" firstAttribute="trailing" secondItem="zra-qE-ey5" secondAttribute="trailing" id="B8Q-Je-gOK"/>
-                            <constraint firstItem="euB-G6-TBc" firstAttribute="top" secondItem="zra-qE-ey5" secondAttribute="top" id="PGc-yN-4aF"/>
-                            <constraint firstItem="euB-G6-TBc" firstAttribute="leading" secondItem="zra-qE-ey5" secondAttribute="leading" id="hZR-8I-GSL"/>
-                            <constraint firstItem="kOm-kW-2hk" firstAttribute="bottom" secondItem="zra-qE-ey5" secondAttribute="bottom" id="jVD-Iw-dQP"/>
-                            <constraint firstItem="kOm-kW-2hk" firstAttribute="top" secondItem="euB-G6-TBc" secondAttribute="bottom" constant="122" id="mJ3-P6-2gh"/>
-                            <constraint firstItem="kOm-kW-2hk" firstAttribute="leading" secondItem="zra-qE-ey5" secondAttribute="leading" id="saH-v2-LLf"/>
+                            <constraint firstAttribute="trailing" secondItem="euB-G6-TBc" secondAttribute="trailing" id="484-Hj-0TQ"/>
+                            <constraint firstItem="euB-G6-TBc" firstAttribute="trailing" secondItem="kOm-kW-2hk" secondAttribute="trailing" id="eB4-IA-v4n"/>
+                            <constraint firstItem="euB-G6-TBc" firstAttribute="leading" secondItem="Scb-ps-FJP" secondAttribute="leading" id="p0D-zE-CRn"/>
+                            <constraint firstItem="kOm-kW-2hk" firstAttribute="top" secondItem="euB-G6-TBc" secondAttribute="bottom" constant="57" id="uLX-5Y-BTc"/>
+                            <constraint firstItem="euB-G6-TBc" firstAttribute="top" secondItem="zra-qE-ey5" secondAttribute="top" id="vWK-Xa-XIv"/>
+                            <constraint firstItem="kOm-kW-2hk" firstAttribute="bottom" secondItem="zra-qE-ey5" secondAttribute="bottom" id="wwK-Nx-ijD"/>
+                            <constraint firstItem="euB-G6-TBc" firstAttribute="leading" secondItem="kOm-kW-2hk" secondAttribute="leading" id="xnq-RN-gs0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zra-qE-ey5"/>
                     </view>
