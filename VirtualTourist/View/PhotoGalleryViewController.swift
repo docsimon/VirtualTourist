@@ -11,14 +11,47 @@ import MapKit
 
 class PhotoGalleryViewController: UIViewController {
 
-    var pin: MKAnnotation?
-    
+    var pin: CLLocationCoordinate2D?
+    var dataController: DataController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let coordinates = pin {
-            print(coordinates.coordinate.latitude)
+            let viewModel = PhotoGalleryViewModel(dataController: dataController, coordinates: coordinates)
+            viewModel.delegate = self
+            viewModel.getPhotoUrls()
         }
     }
 
+}
+
+extension PhotoGalleryViewController: PhotoGalleryDelegate {
+    func updateGallery(photo: Gallery) {
+        for pic in photo.photo {
+            print(pic.url_m)
+        }
+    }
+    
+    func updateTitle(title: String) {
+        
+    }
+    
+    
+}
+
+// MARK: Error Delegate
+extension PhotoGalleryViewController: ErrorControllerProtocol {
+    func dismissActivityControl() {
+        
+    }
+    
+    func presentError(alertController: UIAlertController) {
+        present(alertController, animated: true)
+    }
+    
+    func fetchData() {
+        
+    }
+    
 }

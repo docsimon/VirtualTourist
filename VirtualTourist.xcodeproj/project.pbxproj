@@ -19,6 +19,11 @@
 		CACC99FB209F336400BFFA26 /* Locations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F8209F322600BFFA26 /* Locations.xcdatamodeld */; };
 		CAFB8A1320A07780006C4C13 /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A1220A07780006C4C13 /* PhotoGalleryViewController.swift */; };
 		CAFB8A1520A08506006C4C13 /* PhotoGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A1420A08506006C4C13 /* PhotoGalleryViewModel.swift */; };
+		CAFB8A1720A08983006C4C13 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A1620A08983006C4C13 /* Client.swift */; };
+		CAFB8A1920A08A0E006C4C13 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A1820A08A0E006C4C13 /* ErrorManager.swift */; };
+		CAFB8A1B20A08BC0006C4C13 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A1A20A08BC0006C4C13 /* Constants.swift */; };
+		CAFB8A1D20A08C12006C4C13 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A1C20A08C12006C4C13 /* DataModel.swift */; };
+		CAFB8A1F20A08CCD006C4C13 /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A1E20A08CCD006C4C13 /* DataParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +62,11 @@
 		CACC99F9209F322600BFFA26 /* Locations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Locations.xcdatamodel; sourceTree = "<group>"; };
 		CAFB8A1220A07780006C4C13 /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		CAFB8A1420A08506006C4C13 /* PhotoGalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewModel.swift; sourceTree = "<group>"; };
+		CAFB8A1620A08983006C4C13 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
+		CAFB8A1820A08A0E006C4C13 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
+		CAFB8A1A20A08BC0006C4C13 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CAFB8A1C20A08C12006C4C13 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		CAFB8A1E20A08CCD006C4C13 /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +158,7 @@
 			children = (
 				CA6F72B720975D2B00D08036 /* MapViewController.swift */,
 				CAFB8A1220A07780006C4C13 /* PhotoGalleryViewController.swift */,
+				CAFB8A1820A08A0E006C4C13 /* ErrorManager.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -157,6 +168,10 @@
 			children = (
 				CACC99F0209DF0D600BFFA26 /* DataController.swift */,
 				CACC99F8209F322600BFFA26 /* Locations.xcdatamodeld */,
+				CAFB8A1620A08983006C4C13 /* Client.swift */,
+				CAFB8A1A20A08BC0006C4C13 /* Constants.swift */,
+				CAFB8A1C20A08C12006C4C13 /* DataModel.swift */,
+				CAFB8A1E20A08CCD006C4C13 /* DataParser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -303,12 +318,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAFB8A1920A08A0E006C4C13 /* ErrorManager.swift in Sources */,
 				CA6F72B820975D2B00D08036 /* MapViewController.swift in Sources */,
+				CAFB8A1F20A08CCD006C4C13 /* DataParser.swift in Sources */,
+				CAFB8A1D20A08C12006C4C13 /* DataModel.swift in Sources */,
 				CAFB8A1520A08506006C4C13 /* PhotoGalleryViewModel.swift in Sources */,
 				CACC99F7209F0AEB00BFFA26 /* MapViewModel.swift in Sources */,
 				CACC99FB209F336400BFFA26 /* Locations.xcdatamodeld in Sources */,
+				CAFB8A1B20A08BC0006C4C13 /* Constants.swift in Sources */,
 				CACC99F1209DF0D600BFFA26 /* DataController.swift in Sources */,
 				CAFB8A1320A07780006C4C13 /* PhotoGalleryViewController.swift in Sources */,
+				CAFB8A1720A08983006C4C13 /* Client.swift in Sources */,
 				CA6F72B620975D2B00D08036 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

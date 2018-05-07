@@ -11,19 +11,58 @@ import MapKit
 import CoreData
 
 protocol PhotoGalleryDelegate: class {
-    func updateGallery(photo: [Photo])
+    func updateGallery(photo: Gallery)
     func updateTitle(title: String)
 }
 
 
 class PhotoGalleryViewModel {
     let dataController: DataController
-    let coordinates: MKPointAnnotation
+    let coordinates: CLLocationCoordinate2D
     weak var delegate: PhotoGalleryDelegate?
     
-    init(dataController: DataController, coordinates: MKPointAnnotation) {
+    init(dataController: DataController, coordinates: CLLocationCoordinate2D) {
         self.dataController = dataController
         self.coordinates = coordinates
+    }
+    
+    func getPhotoUrls(){
+        let client = Client()
+        var urlComponents = URLComponents(string: Constants.Client.baseUrl)
+        //urlComponents.host = Constants.Client.baseUrl
+        var queryItemsArray = [URLQueryItem]()
+        queryItemsArray.append(URLQueryItem(name: "api_key", value: Constants.Client.apiKey))
+        queryItemsArray.append(URLQueryItem(name: "lon", value: String(coordinates.longitude)))
+        queryItemsArray.append(URLQueryItem(name: "lat", value: String(coordinates.latitude)))
+        queryItemsArray.append(URLQueryItem(name: "radius", value: "5"))
+        queryItemsArray.append(URLQueryItem(name: "format", value: "json"))
+        queryItemsArray.append(URLQueryItem(name: "method", value: "flickr.photos.search"))
+        queryItemsArray.append(URLQueryItem(name: "extras", value: "url_m"))
+        queryItemsArray.append(URLQueryItem(name: "safe_search", value: "1"))
+        queryItemsArray.append(URLQueryItem(name: "per_page", value: "20"))
+        queryItemsArray.append(URLQueryItem(name: "nojsoncallback", value: "?"))
+        urlComponents?.queryItems = queryItemsArray
+        
+        guard let url = urlComponents?.url else {
+            print("Error in url")
+            return
+        }
+        
+        client.fetchRemoteData(request: url, dataHandler: .dataListHandler, completion: { listData, errorData  in
+            
+            if let error = errorData {
+                //self.delegate?.displayError(errorData: error)
+                print("Error: ", error.errorTitle)
+                return
+            }
+            
+            guard let listData = listData as? Flickr else {
+                print("error")
+                return
+            }
+            
+            self.delegate?.updateGallery(photo: listData.photos)
+        })
     }
     
 }
