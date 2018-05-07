@@ -35,12 +35,14 @@ extension PhotoGalleryViewController: PhotoGalleryDelegate {
         gallery = photo.photo
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            if self.gallery?.count == 0 {
+                self.locationTitle.text = "No photos available"
+            }
         }
     }
     
     func updateTitle(title: String) {
         DispatchQueue.main.async {
-            self.locationTitle.textAlignment = .center
             self.locationTitle.text = title
         }
     }
@@ -75,13 +77,15 @@ extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCollectionViewCell, let gallery = gallery else {
             return UICollectionViewCell()
         }
-
+        cell.activityIndicator.hidesWhenStopped = true
+        cell.startActivity()
         self.viewModel?.fetchImage(url: gallery[indexPath.row].url_m) { data in
             
             guard let data = data else {
                 return
             }
             DispatchQueue.main.async {
+                cell.stopActivity()
                 cell.set(imageData: data)
             }
             

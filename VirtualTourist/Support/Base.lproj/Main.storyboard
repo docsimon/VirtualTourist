@@ -57,7 +57,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kOm-kW-2hk">
-                                <rect key="frame" x="0.0" y="216" width="375" height="451"/>
+                                <rect key="frame" x="0.0" y="186" width="375" height="481"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fis-f1-UR4">
                                     <size key="itemSize" width="112" height="110"/>
@@ -76,15 +76,21 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z1X-bn-tBh">
                                                     <rect key="frame" x="0.0" y="0.0" width="112" height="110"/>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Wfw-W6-1qS">
+                                                    <rect key="frame" x="46" y="45" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="z1X-bn-tBh" firstAttribute="leading" secondItem="geg-Eg-kvn" secondAttribute="leading" id="0RG-Xp-hPe"/>
+                                            <constraint firstItem="Wfw-W6-1qS" firstAttribute="centerY" secondItem="geg-Eg-kvn" secondAttribute="centerY" id="7jh-m4-QHF"/>
                                             <constraint firstAttribute="trailing" secondItem="z1X-bn-tBh" secondAttribute="trailing" id="FYW-f3-W7V"/>
+                                            <constraint firstItem="Wfw-W6-1qS" firstAttribute="centerX" secondItem="geg-Eg-kvn" secondAttribute="centerX" id="Sfq-cR-LLO"/>
                                             <constraint firstItem="z1X-bn-tBh" firstAttribute="top" secondItem="geg-Eg-kvn" secondAttribute="top" id="SgC-uU-tBq"/>
                                             <constraint firstAttribute="bottom" secondItem="z1X-bn-tBh" secondAttribute="bottom" id="gN2-PH-eEB"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="activityIndicator" destination="Wfw-W6-1qS" id="WIh-DQ-2SZ"/>
                                             <outlet property="imageView" destination="z1X-bn-tBh" id="Q0v-dA-iIw"/>
                                         </connections>
                                     </collectionViewCell>
@@ -94,8 +100,8 @@
                                     <outlet property="delegate" destination="2R3-1u-aTt" id="Lt5-AL-c1s"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ciccio" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euB-G6-TBc">
-                                <rect key="frame" x="0.0" y="64" width="375" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euB-G6-TBc">
+                                <rect key="frame" x="0.0" y="64" width="375" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

@@ -11,8 +11,17 @@ import UIKit
 class ImageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     func set(imageData: Data){
         self.imageView.image = UIImage(data: imageData)
+    }
+    
+    func startActivity(){
+        activityIndicator.startAnimating()
+    }
+    
+    func stopActivity(){
+        activityIndicator.stopAnimating()
     }
 }
