@@ -105,7 +105,15 @@ extension MapViewController: MKMapViewDelegate {
     }
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
-           print("called !!!!!")
+            performSegue(withIdentifier: "photoGallery", sender: nil)
+        }
+    }
+}
+// Navigation
+extension MapViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destVC = segue.destination as? PhotoGalleryViewController {
+            destVC.pin = selectedPin?.annotation
         }
     }
 }

@@ -17,6 +17,8 @@
 		CACC99F1209DF0D600BFFA26 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F0209DF0D600BFFA26 /* DataController.swift */; };
 		CACC99F7209F0AEB00BFFA26 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F6209F0AEB00BFFA26 /* MapViewModel.swift */; };
 		CACC99FB209F336400BFFA26 /* Locations.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CACC99F8209F322600BFFA26 /* Locations.xcdatamodeld */; };
+		CAFB8A1320A07780006C4C13 /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A1220A07780006C4C13 /* PhotoGalleryViewController.swift */; };
+		CAFB8A1520A08506006C4C13 /* PhotoGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFB8A1420A08506006C4C13 /* PhotoGalleryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		CACC99F0209DF0D600BFFA26 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		CACC99F6209F0AEB00BFFA26 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		CACC99F9209F322600BFFA26 /* Locations.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Locations.xcdatamodel; sourceTree = "<group>"; };
+		CAFB8A1220A07780006C4C13 /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
+		CAFB8A1420A08506006C4C13 /* PhotoGalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				CACC99F6209F0AEB00BFFA26 /* MapViewModel.swift */,
+				CAFB8A1420A08506006C4C13 /* PhotoGalleryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				CA6F72B720975D2B00D08036 /* MapViewController.swift */,
+				CAFB8A1220A07780006C4C13 /* PhotoGalleryViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -298,9 +304,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA6F72B820975D2B00D08036 /* MapViewController.swift in Sources */,
+				CAFB8A1520A08506006C4C13 /* PhotoGalleryViewModel.swift in Sources */,
 				CACC99F7209F0AEB00BFFA26 /* MapViewModel.swift in Sources */,
 				CACC99FB209F336400BFFA26 /* Locations.xcdatamodeld in Sources */,
 				CACC99F1209DF0D600BFFA26 /* DataController.swift in Sources */,
+				CAFB8A1320A07780006C4C13 /* PhotoGalleryViewController.swift in Sources */,
 				CA6F72B620975D2B00D08036 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
