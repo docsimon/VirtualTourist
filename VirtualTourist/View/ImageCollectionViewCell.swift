@@ -24,4 +24,8 @@ class ImageCollectionViewCell: UICollectionViewCell {
     func stopActivity(){
         activityIndicator.stopAnimating()
     }
+    
+    func resetCellImage(){
+        self.imageView.image = nil
+    }
 }

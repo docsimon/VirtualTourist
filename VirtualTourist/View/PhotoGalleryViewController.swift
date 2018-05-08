@@ -25,7 +25,7 @@ class PhotoGalleryViewController: UIViewController {
         if let coordinates = pinCoordinates {
             viewModel = PhotoGalleryViewModel(dataController: dataController, coordinates: coordinates)
             viewModel?.delegate = self
-            viewModel?.getPhotoUrls()
+            viewModel?.getPhotoUrls(page: 1)
             viewModel?.lookUpCurrentLocation()
         }
         setFlowLayout()
@@ -40,6 +40,10 @@ class PhotoGalleryViewController: UIViewController {
         collectionViewFlowLayout.itemSize = CGSize(width: width, height: height)
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
+    @IBAction func newGallery(_ sender: Any) {
+        viewModel?.loadNewGallery()
+    }
+    
 }
 
 extension PhotoGalleryViewController: PhotoGalleryDelegate {
@@ -69,6 +73,15 @@ extension PhotoGalleryViewController: PhotoGalleryDelegate {
         }
     }
     
+    func cleanGallery(){
+        DispatchQueue.main.async {
+            self.collectionSize = nil
+            self.photoGallery = nil
+            self.gallery = nil
+            self.collectionView.reloadData()
+        }
+    }
+    
 }
 
 // MARK: Error Delegate
@@ -90,7 +103,6 @@ extension PhotoGalleryViewController: ErrorControllerProtocol {
 extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return collectionSize ?? 0
     }
     
@@ -100,10 +112,12 @@ extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionView
             return UICollectionViewCell()
         }
         
+        cell.activityIndicator.hidesWhenStopped = true
         if let photoGallery = photoGallery, let data = photoGallery[indexPath.row].payload  {
             cell.set(imageData: data)
         }else {
-            cell.activityIndicator.hidesWhenStopped = true
+            cell.resetCellImage()
+            cell.stopActivity()
             cell.startActivity()
             self.viewModel?.fetchImage(url: gallery![indexPath.row].url_m) { data in
 

@@ -48,7 +48,7 @@
             </objects>
             <point key="canvasLocation" x="1076" y="132.68365817091455"/>
         </scene>
-        <!--Photo Gallery View Controller-->
+        <!--Title-->
         <scene sceneID="url-Gs-RMG">
             <objects>
                 <viewController id="2R3-1u-aTt" customClass="PhotoGalleryViewController" customModule="VirtualTourist" customModuleProvider="target" sceneMemberID="viewController">
@@ -119,6 +119,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zra-qE-ey5"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="gHD-DL-7ID">
+                        <barButtonItem key="rightBarButtonItem" title="New Gallery" id="UTn-pe-TdV">
+                            <connections>
+                                <action selector="newGallery:" destination="2R3-1u-aTt" id="Tpj-V3-OpA"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="kOm-kW-2hk" id="DAF-tD-fEQ"/>
                         <outlet property="collectionViewFlowLayout" destination="fis-f1-UR4" id="95Y-ni-ZGc"/>

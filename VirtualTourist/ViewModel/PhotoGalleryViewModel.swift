@@ -13,6 +13,7 @@ import CoreData
 protocol PhotoGalleryDelegate: class {
     func updateGallery(photo: Gallery)
     func updateGalleryFromDB(photo: [Photo])
+    func cleanGallery()
     func updateTitle(title: String)
 }
 
@@ -21,6 +22,7 @@ class PhotoGalleryViewModel {
     let dataController: DataController
     let coordinates: CLLocationCoordinate2D
     var pin: Pin!
+    var currentPage = 1
     weak var delegate: PhotoGalleryDelegate?
     
     init(dataController: DataController, coordinates: CLLocationCoordinate2D) {
@@ -28,7 +30,7 @@ class PhotoGalleryViewModel {
         self.coordinates = coordinates
     }
     
-    func getPhotoUrls(){
+    func getPhotoUrls(page: Int){
         pin = fetchPin(coordinates)
         // check if there are stored photos for the pin
         if let photos = fetchPhoto(pin), photos.count > 0 {
@@ -46,6 +48,7 @@ class PhotoGalleryViewModel {
             queryItemsArray.append(URLQueryItem(name: "method", value: "flickr.photos.search"))
             queryItemsArray.append(URLQueryItem(name: "extras", value: "url_m"))
             queryItemsArray.append(URLQueryItem(name: "safe_search", value: "1"))
+            queryItemsArray.append(URLQueryItem(name: "page", value: String(page)))
             queryItemsArray.append(URLQueryItem(name: "per_page", value: "21"))
             queryItemsArray.append(URLQueryItem(name: "nojsoncallback", value: "?"))
             urlComponents?.queryItems = queryItemsArray
@@ -144,6 +147,22 @@ class PhotoGalleryViewModel {
         photo.url = url
         photo.pin = pin
         dataController.saveDB(context: dataController.context)
+    }
+    func deletePhoto(photo: Photo){
+        dataController.context.delete(photo)
+    }
+    
+    func loadNewGallery(){
+        // First remove all the photo for the pin
+        if let photos = fetchPhoto(pin) {
+            for photo in photos {
+                deletePhoto(photo: photo)
+            }
+        }
+        dataController.saveDB(context: dataController.context)
+        delegate?.cleanGallery()
+        currentPage =  (currentPage == 1) ? 2 : 1
+        getPhotoUrls(page: currentPage)
     }
 }
 
