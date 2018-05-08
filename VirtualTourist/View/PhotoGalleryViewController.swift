@@ -101,5 +101,9 @@ extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionView
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
 }
 

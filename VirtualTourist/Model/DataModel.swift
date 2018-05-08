@@ -27,3 +27,8 @@ struct Gallery: Decodable {
 struct PhotoF: Decodable {
     let url_m: String
 }
+
+struct PhotoObject {
+    let url_m: String
+    let data: Data
+}
