@@ -12,6 +12,7 @@ import CoreData
 
 protocol PhotoGalleryDelegate: class {
     func updateGallery(photo: Gallery)
+    func updateGalleryFromDB(photo: [Photo])
     func updateTitle(title: String)
 }
 
@@ -19,6 +20,7 @@ protocol PhotoGalleryDelegate: class {
 class PhotoGalleryViewModel {
     let dataController: DataController
     let coordinates: CLLocationCoordinate2D
+    var pin: Pin!
     weak var delegate: PhotoGalleryDelegate?
     
     init(dataController: DataController, coordinates: CLLocationCoordinate2D) {
@@ -27,42 +29,48 @@ class PhotoGalleryViewModel {
     }
     
     func getPhotoUrls(){
-        let client = Client()
-        var urlComponents = URLComponents(string: Constants.Client.baseUrl)
-        //urlComponents.host = Constants.Client.baseUrl
-        var queryItemsArray = [URLQueryItem]()
-        queryItemsArray.append(URLQueryItem(name: "api_key", value: Constants.Client.apiKey))
-        queryItemsArray.append(URLQueryItem(name: "lon", value: String(coordinates.longitude)))
-        queryItemsArray.append(URLQueryItem(name: "lat", value: String(coordinates.latitude)))
-        queryItemsArray.append(URLQueryItem(name: "radius", value: "5"))
-        queryItemsArray.append(URLQueryItem(name: "format", value: "json"))
-        queryItemsArray.append(URLQueryItem(name: "method", value: "flickr.photos.search"))
-        queryItemsArray.append(URLQueryItem(name: "extras", value: "url_m"))
-        queryItemsArray.append(URLQueryItem(name: "safe_search", value: "1"))
-        queryItemsArray.append(URLQueryItem(name: "per_page", value: "21"))
-        queryItemsArray.append(URLQueryItem(name: "nojsoncallback", value: "?"))
-        urlComponents?.queryItems = queryItemsArray
-        
-        guard let url = urlComponents?.url else {
-            print("Error in url")
-            return
+        pin = fetchPin(coordinates)
+        // check if there are stored photos for the pin
+        if let photos = fetchPhoto(pin), photos.count > 0 {
+            delegate?.updateGalleryFromDB(photo: photos)
+        } else {
+            let client = Client()
+            var urlComponents = URLComponents(string: Constants.Client.baseUrl)
+            //urlComponents.host = Constants.Client.baseUrl
+            var queryItemsArray = [URLQueryItem]()
+            queryItemsArray.append(URLQueryItem(name: "api_key", value: Constants.Client.apiKey))
+            queryItemsArray.append(URLQueryItem(name: "lon", value: String(coordinates.longitude)))
+            queryItemsArray.append(URLQueryItem(name: "lat", value: String(coordinates.latitude)))
+            queryItemsArray.append(URLQueryItem(name: "radius", value: "5"))
+            queryItemsArray.append(URLQueryItem(name: "format", value: "json"))
+            queryItemsArray.append(URLQueryItem(name: "method", value: "flickr.photos.search"))
+            queryItemsArray.append(URLQueryItem(name: "extras", value: "url_m"))
+            queryItemsArray.append(URLQueryItem(name: "safe_search", value: "1"))
+            queryItemsArray.append(URLQueryItem(name: "per_page", value: "21"))
+            queryItemsArray.append(URLQueryItem(name: "nojsoncallback", value: "?"))
+            urlComponents?.queryItems = queryItemsArray
+            
+            guard let url = urlComponents?.url else {
+                print("Error in url")
+                return
+            }
+            
+            client.fetchRemoteData(request: url, dataHandler: .dataListHandler, completion: { listData, errorData  in
+                
+                if let error = errorData {
+                    //self.delegate?.displayError(errorData: error)
+                    print("Error: ", error.errorTitle)
+                    return
+                }
+                
+                guard let listData = listData as? Flickr else {
+                    print("error")
+                    return
+                }
+                
+                self.delegate?.updateGallery(photo: listData.photos)
+            })
         }
-        
-        client.fetchRemoteData(request: url, dataHandler: .dataListHandler, completion: { listData, errorData  in
-            
-            if let error = errorData {
-                //self.delegate?.displayError(errorData: error)
-                print("Error: ", error.errorTitle)
-                return
-            }
-            
-            guard let listData = listData as? Flickr else {
-                print("error")
-                return
-            }
-            
-            self.delegate?.updateGallery(photo: listData.photos)
-        })
     }
     
     func fetchImage(url: String, completion: @escaping (Data?) -> () ){
@@ -83,6 +91,7 @@ class PhotoGalleryViewModel {
                 return
             }
             
+            self.addPhoto(url: url.absoluteString, data: data)
             completion(data)
         }
     }
@@ -105,5 +114,36 @@ class PhotoGalleryViewModel {
         })
     }
     
+    func fetchPin(_ coordinates: CLLocationCoordinate2D) -> Pin?{
+        let longitude = coordinates.longitude
+        let latitude = coordinates.latitude
+        let fetchRequest: NSFetchRequest<Pin> = Pin.fetchRequest()
+        let predicate = NSPredicate(format: "longitude == %lf && latitude == %lf", longitude, latitude)
+        fetchRequest.predicate = predicate
+        if let result = try? dataController.context.fetch(fetchRequest){
+            if result.count > 0 {
+                return result[0]
+            }
+        }
+        return nil
+    }
+    
+    func fetchPhoto(_ pin: Pin) -> [Photo]?{
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let predicate = NSPredicate(format: "pin == %@", pin)
+        fetchRequest.predicate = predicate
+        if let result = try? dataController.context.fetch(fetchRequest){
+            return result
+        }
+        return nil
+    }
+    
+    func addPhoto(url: String, data: Data){
+        let photo = Photo(context: dataController.context)
+        photo.payload = data
+        photo.url = url
+        photo.pin = pin
+        dataController.saveDB(context: dataController.context)
+    }
 }
 

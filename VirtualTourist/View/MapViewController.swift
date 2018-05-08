@@ -113,7 +113,7 @@ extension MapViewController: MKMapViewDelegate {
 extension MapViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destVC = segue.destination as? PhotoGalleryViewController {
-            destVC.pin = selectedPin?.annotation?.coordinate
+            destVC.pinCoordinates = selectedPin?.annotation?.coordinate
             destVC.dataController = dataController
         }
     }

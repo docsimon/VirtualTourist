@@ -12,16 +12,17 @@ import MapKit
 class PhotoGalleryViewController: UIViewController {
     
     @IBOutlet weak var locationTitle: UILabel!
+    var collectionSize: Int?
     var gallery: [PhotoF]?
-    var pin: CLLocationCoordinate2D?
+    var photoGallery: [Photo]?
+    var pinCoordinates: CLLocationCoordinate2D?
     var dataController: DataController!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionViewFlowLayout: UICollectionViewFlowLayout!
     var viewModel: PhotoGalleryViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let coordinates = pin {
+        if let coordinates = pinCoordinates {
             viewModel = PhotoGalleryViewModel(dataController: dataController, coordinates: coordinates)
             viewModel?.delegate = self
             viewModel?.getPhotoUrls()
@@ -45,10 +46,20 @@ extension PhotoGalleryViewController: PhotoGalleryDelegate {
     func updateGallery(photo: Gallery) {
         gallery = photo.photo
         DispatchQueue.main.async {
-            self.collectionView.reloadData()
             if self.gallery?.count == 0 {
                 self.locationTitle.text = "No photos available"
+            }else {
+                self.collectionSize = self.gallery?.count
+                self.collectionView.reloadData()
             }
+        }
+    }
+    
+    func updateGalleryFromDB(photo: [Photo]) {
+        photoGallery = photo
+        DispatchQueue.main.async {
+            self.collectionSize = self.photoGallery?.count
+            self.collectionView.reloadData()
         }
     }
     
@@ -57,6 +68,7 @@ extension PhotoGalleryViewController: PhotoGalleryDelegate {
             self.locationTitle.text = title
         }
     }
+    
 }
 
 // MARK: Error Delegate
@@ -78,30 +90,34 @@ extension PhotoGalleryViewController: ErrorControllerProtocol {
 extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return gallery?.count ?? 0
+        
+        return collectionSize ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCollectionViewCell, let gallery = gallery else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.activityIndicator.hidesWhenStopped = true
-        cell.startActivity()
-        self.viewModel?.fetchImage(url: gallery[indexPath.row].url_m) { data in
-            
-            guard let data = data else {
-                return
+        
+        if let photoGallery = photoGallery, let data = photoGallery[indexPath.row].payload  {
+            cell.set(imageData: data)
+        }else {
+            cell.activityIndicator.hidesWhenStopped = true
+            cell.startActivity()
+            self.viewModel?.fetchImage(url: gallery![indexPath.row].url_m) { data in
+
+                guard let data = data else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    cell.stopActivity()
+                    cell.set(imageData: data)
+                }
             }
-            DispatchQueue.main.async {
-                cell.stopActivity()
-                cell.set(imageData: data)
-            }
-            
         }
         return cell
     }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
