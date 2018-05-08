@@ -12,6 +12,7 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var url: String!
     
     func set(imageData: Data){
         self.imageView.image = UIImage(data: imageData)

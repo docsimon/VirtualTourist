@@ -16,7 +16,7 @@ class PhotoGalleryViewController: UIViewController {
     var collectionSize = 0
     var gallery: [PhotoF]?
     var photoGallery = [Int:Photo]()
-    var selectedCells = [IndexPath]()
+    var selectedCells = [IndexPath:String]()
     var pinCoordinates: CLLocationCoordinate2D?
     var dataController: DataController!
     var photoCache = [Int:Data]()
@@ -45,18 +45,22 @@ class PhotoGalleryViewController: UIViewController {
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
     @IBAction func newGallery(_ sender: Any) {
+        deletePhotos.isEnabled = false
+        selectedCells.removeAll()
         photoCache.removeAll()
         viewModel?.loadNewGallery()
     }
     @IBAction func trashPhotos(_ sender: Any) {
         // remove from db the selected cells
+        
         viewModel?.removePhotos(list: selectedCells)
+        
         // remove from the collection view displayed
         collectionSize -= selectedCells.count
-        collectionView.deleteItems(at: selectedCells)
+        collectionView.deleteItems(at: Array(selectedCells.keys))
         for index in selectedCells {
-            photoGallery.removeValue(forKey: index.row)
-            photoCache.removeValue(forKey: index.row)
+            photoGallery.removeValue(forKey: index.key.row)
+            photoCache.removeValue(forKey: index.key.row)
         }
         selectedCells.removeAll()
         deletePhotos.isEnabled = false
@@ -146,8 +150,9 @@ extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionView
         
         cell.activityIndicator.hidesWhenStopped = true
         if  photoGallery.count > 0 {
-            if let data = photoGallery[indexPath.row]?.payload {
-                cell.set(imageData: data)
+            if let data = photoGallery[indexPath.row] {
+                cell.set(imageData: data.payload!)
+                cell.url = data.url
             }
             print("photo from DB")
         }else {
@@ -159,6 +164,7 @@ extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionView
                 cell.resetCellImage()
                 cell.stopActivity()
                 cell.startActivity()
+                cell.url = gallery![indexPath.row].url_m
                 self.viewModel?.fetchImage(url: gallery![indexPath.row].url_m) { data in
                     
                     guard let data = data else {
@@ -177,10 +183,10 @@ extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! ImageCollectionViewCell
         cell.setSelected()
-        if let index = selectedCells.index(of: indexPath) {
-            selectedCells.remove(at: index)
+        if let _ = selectedCells[indexPath] {
+            selectedCells.removeValue(forKey: indexPath)
         }else {
-            selectedCells.append(indexPath)
+            selectedCells[indexPath] = cell.url
         }
         if selectedCells.count > 0 {
             deletePhotos.isEnabled = true
