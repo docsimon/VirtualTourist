@@ -164,5 +164,9 @@ class PhotoGalleryViewModel {
         currentPage =  (currentPage == 1) ? 2 : 1
         getPhotoUrls(page: currentPage)
     }
+    
+    func removePhotos(list: [IndexPath]){
+       print("removed from db")
+    }
 }
 

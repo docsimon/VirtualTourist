@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -120,15 +121,23 @@
                         <viewLayoutGuide key="safeArea" id="zra-qE-ey5"/>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="gHD-DL-7ID">
-                        <barButtonItem key="rightBarButtonItem" title="New Gallery" id="UTn-pe-TdV">
-                            <connections>
-                                <action selector="newGallery:" destination="2R3-1u-aTt" id="Tpj-V3-OpA"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="trash" id="T0U-rH-Dlv">
+                                <connections>
+                                    <action selector="trashPhotos:" destination="2R3-1u-aTt" id="N5P-8G-NqM"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="New Gallery" id="UTn-pe-TdV">
+                                <connections>
+                                    <action selector="newGallery:" destination="2R3-1u-aTt" id="Tpj-V3-OpA"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="kOm-kW-2hk" id="DAF-tD-fEQ"/>
                         <outlet property="collectionViewFlowLayout" destination="fis-f1-UR4" id="95Y-ni-ZGc"/>
+                        <outlet property="deletePhotos" destination="T0U-rH-Dlv" id="0GV-p9-UBb"/>
                         <outlet property="locationTitle" destination="euB-G6-TBc" id="jrf-sf-mpE"/>
                     </connections>
                 </viewController>

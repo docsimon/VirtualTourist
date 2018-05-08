@@ -28,4 +28,9 @@ class ImageCollectionViewCell: UICollectionViewCell {
     func resetCellImage(){
         self.imageView.image = nil
     }
+    
+    func setSelected(){
+        self.imageView.alpha = self.imageView.alpha == 0.5 ? 1.0 : 0.5
+    }
+    
 }
