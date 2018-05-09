@@ -12,9 +12,40 @@ struct Constants {
     
     struct Client {
         static let baseUrl = "https://api.flickr.com/services/rest"
-        static let apiKey = "bacc1978d9b33ca7e364da45cf085f42"
     }
     
+    // MARK: Flickr Parameter Keys
+    struct FlickrParameterKeys {
+        static let Method = "method"
+        static let APIKey = "api_key"
+        static let Extras = "extras"
+        static let Format = "format"
+        static let NoJSONCallback = "nojsoncallback"
+        static let Longitude = "lon"
+        static let Latitude = "lat"
+        static let Radius = "radius"
+        static let Page = "page"
+        static let PhotoPerPage = "per_page"
+        static let SafeSearch = "safe_search"
+
+
+
+    }
+    
+    // MARK: Flickr Parameter Values
+    struct FlickrParameterValues {
+        static let APIKey = "bacc1978d9b33ca7e364da45cf085f42"
+        static let Format = "json"
+        static let NoJSONCallback = "1" /* 1 means "yes" */
+        static let Method = "flickr.photos.search"
+        static let Extras = "url_m"
+        static let Radius = "5"
+        static let SafeSearch = "1" /* 1 means "yes" */
+        static let PhotoPerPage = "21"
+
+    }
+    
+    // MARK:  Errors
     struct Errors {
         static let clientErrorTitle = "Client Error"
         static let networkErrorTitle = "Network Error"
@@ -45,7 +76,7 @@ struct Constants {
             static let generic =  "Generic network error"
         }
     }
-    
+    // MARK: Error buttons
     struct UIViews {
         struct  ErrorView {
             static let dismissButton = "Dismiss"

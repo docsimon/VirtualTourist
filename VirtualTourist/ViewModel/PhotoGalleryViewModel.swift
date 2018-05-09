@@ -40,24 +40,24 @@ class PhotoGalleryViewModel {
             var urlComponents = URLComponents(string: Constants.Client.baseUrl)
             //urlComponents.host = Constants.Client.baseUrl
             var queryItemsArray = [URLQueryItem]()
-            queryItemsArray.append(URLQueryItem(name: "api_key", value: Constants.Client.apiKey))
-            queryItemsArray.append(URLQueryItem(name: "lon", value: String(coordinates.longitude)))
-            queryItemsArray.append(URLQueryItem(name: "lat", value: String(coordinates.latitude)))
-            queryItemsArray.append(URLQueryItem(name: "radius", value: "5"))
-            queryItemsArray.append(URLQueryItem(name: "format", value: "json"))
-            queryItemsArray.append(URLQueryItem(name: "method", value: "flickr.photos.search"))
-            queryItemsArray.append(URLQueryItem(name: "extras", value: "url_m"))
-            queryItemsArray.append(URLQueryItem(name: "safe_search", value: "1"))
-            queryItemsArray.append(URLQueryItem(name: "page", value: String(page)))
-            queryItemsArray.append(URLQueryItem(name: "per_page", value: "21"))
-            queryItemsArray.append(URLQueryItem(name: "nojsoncallback", value: "?"))
+            queryItemsArray.append(URLQueryItem(name: Constants.FlickrParameterKeys.APIKey, value: Constants.FlickrParameterValues.APIKey))
+            queryItemsArray.append(URLQueryItem(name: Constants.FlickrParameterKeys.Longitude, value: String(coordinates.longitude)))
+            queryItemsArray.append(URLQueryItem(name: Constants.FlickrParameterKeys.Latitude, value: String(coordinates.latitude)))
+            queryItemsArray.append(URLQueryItem(name: Constants.FlickrParameterKeys.Radius, value: Constants.FlickrParameterValues.Radius))
+            queryItemsArray.append(URLQueryItem(name: Constants.FlickrParameterKeys.Format, value: Constants.FlickrParameterValues.Format))
+            queryItemsArray.append(URLQueryItem(name: Constants.FlickrParameterKeys.Method, value: Constants.FlickrParameterValues.Method))
+            queryItemsArray.append(URLQueryItem(name: Constants.FlickrParameterKeys.Extras, value: Constants.FlickrParameterValues.Extras))
+            queryItemsArray.append(URLQueryItem(name: Constants.FlickrParameterKeys.SafeSearch, value: Constants.FlickrParameterKeys.SafeSearch))
+            queryItemsArray.append(URLQueryItem(name: Constants.FlickrParameterKeys.Page, value: String(page)))
+            queryItemsArray.append(URLQueryItem(name: Constants.FlickrParameterKeys.PhotoPerPage, value:Constants.FlickrParameterValues.PhotoPerPage ))
+            queryItemsArray.append(URLQueryItem(name: Constants.FlickrParameterKeys.NoJSONCallback, value: Constants.FlickrParameterValues.NoJSONCallback))
             urlComponents?.queryItems = queryItemsArray
             
             guard let url = urlComponents?.url else {
                 print("Error in url")
                 return
             }
-            
+            print(url)
             client.fetchRemoteData(request: url, dataHandler: .dataListHandler, completion: { listData, errorData  in
                 
                 if let error = errorData {

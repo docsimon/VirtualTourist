@@ -24,7 +24,7 @@ class MapViewController: UIViewController {
         mapViewModel?.loadPin()
         // add gesture recognizer
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(mapLongPress(_:))) // colon needs to pass through info
-        longPress.minimumPressDuration = 1.0 // in seconds
+        longPress.minimumPressDuration = 0.5 // in seconds
         //add gesture recognition
         mapView.addGestureRecognizer(longPress)
     }
@@ -43,7 +43,8 @@ class MapViewController: UIViewController {
         let touchedAtCoordinate : CLLocationCoordinate2D = mapView.convert(touchedAt, toCoordinateFrom: self.mapView) // will get coordinates
         let currentPin = MKPointAnnotation()
         currentPin.coordinate = touchedAtCoordinate
-        if recognizer.state == .ended {
+        
+        if recognizer.state == .began {
             addPin(currentPin)
             updateDB(pin: currentPin)
         }
