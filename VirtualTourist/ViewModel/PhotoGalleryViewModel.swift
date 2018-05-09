@@ -166,7 +166,23 @@ class PhotoGalleryViewModel {
     }
     
     func removePhotos(list: [IndexPath:String]){
-       print("removed from db")
+        print("removed from db")
+        let arrayOfUrl = Array(list.values)
+        var photoToDelete = [Photo]()
+        if let photo = fetchPhoto(pin){
+            for elem in photo {
+                if let _ = arrayOfUrl.index(of: elem.url!) {
+                    print(elem.url!)
+                    photoToDelete.append(elem)
+                }
+            }
+        }
+        
+        for photo in photoToDelete {
+            dataController.context.delete(photo)
+        }
+        
+        dataController.saveDB(context: dataController.context)
     }
 }
 

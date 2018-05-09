@@ -150,8 +150,8 @@ extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionView
         
         cell.activityIndicator.hidesWhenStopped = true
         if  photoGallery.count > 0 {
-            if let data = photoGallery[indexPath.row] {
-                cell.set(imageData: data.payload!)
+            if let data = photoGallery[indexPath.row], let payload = data.payload {
+                cell.set(imageData: payload)
                 cell.url = data.url
             }
             print("photo from DB")
