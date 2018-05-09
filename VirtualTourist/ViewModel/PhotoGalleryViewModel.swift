@@ -22,7 +22,6 @@ class PhotoGalleryViewModel {
     let dataController: DataController
     let coordinates: CLLocationCoordinate2D
     var pin: Pin!
-    var currentPage = 1
     weak var delegate: PhotoGalleryDelegate?
     
     init(dataController: DataController, coordinates: CLLocationCoordinate2D) {
@@ -71,6 +70,10 @@ class PhotoGalleryViewModel {
                     return
                 }
                 
+                // If there are no more photos, reset the page to 1
+                if listData.photos.photo.count == 0 {
+                    self.pin.currentPage = 1
+                }
                 self.delegate?.updateGallery(photo: listData.photos)
             })
         }
@@ -161,8 +164,9 @@ class PhotoGalleryViewModel {
         }
         dataController.saveDB(context: dataController.context)
         delegate?.cleanGallery()
-        currentPage =  (currentPage == 1) ? 2 : 1
-        getPhotoUrls(page: currentPage)
+        pin.currentPage += Int32(1)
+        print("current page: ", pin.currentPage)
+        getPhotoUrls(page: Int(pin.currentPage))
     }
     
     func removePhotos(list: [IndexPath:String]){
